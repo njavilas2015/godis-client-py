@@ -5,23 +5,17 @@
 ## Uso
 Para usar `hash`, puedes ejecutar el siguiente comando en la terminal:
 
-```bash
-python3 test_hash.py
-```
-
 ```python
-from main import client
+from godis.hash import HashStorage
 
-host: str = "localhost"
-port: int = 6480
+if __name__ == "__main__":
+    storage = HashStorage()
 
-response: str = client(host, port, "HSET food country ar")
+    response = storage.hset("food", country="ar", type="fruit", color="red")
+    print(f"Respuesta del servidor (HSET): {response}")
 
-print(f"Respuesta del servidor: {response}")
-
-response: str = client(host, port, "HGET food country")
-
-print(f"Respuesta del servidor: {response}")
+    result = storage.hget("food", "country")
+    print(f"Respuesta del servidor (HGET): {result}")
 ```
 
 ## Contacto
